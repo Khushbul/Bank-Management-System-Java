@@ -9,6 +9,10 @@ import com.toedter.calendar.JDateChooser;
 
 public class SignupOne extends JFrame implements ActionListener {
     
+    
+    JRadioButton male, female, married, unmarried, other;
+    JButton next;
+    
     SignupOne(){
         
         setLayout(null);
@@ -54,13 +58,29 @@ public class SignupOne extends JFrame implements ActionListener {
         add(dob);
         
         JDateChooser dateChooser = new JDateChooser();
-        dateChooser.setBounds(300, 240, 200, 30);
+        dateChooser.setBounds(300, 240, 400, 30);
+        dateChooser.setForeground(new Color( 105, 105, 105));
         add(dateChooser);
         
         JLabel gender = new JLabel("Gender: ");
         gender.setFont(new Font("Railway", Font.BOLD, 20));
         gender.setBounds(100, 290, 200, 30);
         add(gender);
+        
+        male= new JRadioButton("Male");
+        male.setBounds(300, 290, 120, 30);
+        male.setBackground(Color.WHITE);
+        add(male);
+        
+        female = new JRadioButton("Female");
+        female.setBounds(450, 290, 120, 30);
+        female.setBackground(Color.WHITE);
+        add(female);
+        
+        ButtonGroup genderGroup = new ButtonGroup();
+        genderGroup.add(male);
+        genderGroup.add(female);
+        
         
         JLabel emial = new JLabel("Email: ");
         emial.setFont(new Font("Railway", Font.BOLD, 20));
@@ -78,6 +98,26 @@ public class SignupOne extends JFrame implements ActionListener {
         marital.setFont(new Font("Railway", Font.BOLD, 20));
         marital.setBounds(100, 390, 200, 30);
         add(marital);
+        
+        married= new JRadioButton("Married");
+        married.setBounds(300, 390, 120, 30);
+        married.setBackground(Color.WHITE);
+        add(married);
+        
+        unmarried = new JRadioButton("Unmarried");
+        unmarried.setBounds(450, 390, 120, 30);
+        unmarried.setBackground(Color.WHITE);
+        add(unmarried);
+        
+        other = new JRadioButton("Other");
+        other.setBounds(600, 390, 120, 30);
+        other.setBackground(Color.WHITE);
+        add(other);
+        
+        ButtonGroup maritalGroup = new ButtonGroup();
+        maritalGroup.add(married);
+        maritalGroup.add(unmarried);
+        maritalGroup.add(other);
         
         JLabel address = new JLabel("Address: ");
         address.setFont(new Font("Railway", Font.BOLD, 20));
@@ -130,8 +170,13 @@ public class SignupOne extends JFrame implements ActionListener {
         pincodeTextField.addActionListener(this);
         add(pincodeTextField);
         
-        
-        
+        next = new JButton("Next");
+        next.setBackground(Color.BLACK);
+        next.setForeground(Color.WHITE);
+        next.setFont(new Font("Railway", Font.BOLD, 16));
+        next.setBounds(620, 660, 80, 30);
+        next.addActionListener(this);
+        add(next);
         
         getContentPane().setBackground(Color.WHITE);
         
