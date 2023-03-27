@@ -3,21 +3,20 @@ package bank.management.system;
 
 import java.awt.*;
 import javax.swing.*;
-import java.util.*;
+//import java.util.*;
 import java.awt.event.*;
-import com.toedter.calendar.JDateChooser;
+//import com.toedter.calendar.JDateChooser;
 
 public class SignupTwo extends JFrame implements ActionListener {
     
-    long random;
-    JTextField nameTextField, fnameTextField, emailTextField, addressTextField, cityTextField, stateTextField, pincodeTextField;
-    JDateChooser dateChooser;
-    JRadioButton male, female, married, unmarried, other;
+    JTextField panTextField, adharTextField;
+    JRadioButton syes, sno, exyes, exno;
     JButton next;
     JComboBox religion, category, income, education, occupation;
+    String formno;
     
-    SignupTwo(){
-        
+    SignupTwo(String formno){
+        this.formno = formno;
         setLayout(null);
         
         setTitle("NEW ACCOUNT APPLICATION FORM - PAGE 2");
@@ -39,7 +38,6 @@ public class SignupTwo extends JFrame implements ActionListener {
         religion.setBackground(Color.WHITE);
         add(religion);
         
-       
         
         JLabel catname = new JLabel("Category: ");
         catname.setFont(new Font("Railway", Font.BOLD, 20));
@@ -92,58 +90,70 @@ public class SignupTwo extends JFrame implements ActionListener {
         add(occupation);
         
         
-       
-        
-        JLabel address = new JLabel("Pan Number: ");
-        address.setFont(new Font("Railway", Font.BOLD, 20));
-        address.setBounds(100, 440, 200, 30);
-        add(address);
+        JLabel panno = new JLabel("Pan Number: ");
+        panno.setFont(new Font("Railway", Font.BOLD, 20));
+        panno.setBounds(100, 440, 200, 30);
+        add(panno);
         
         
-        addressTextField = new JTextField();
-        addressTextField.setFont(new Font("Railway", Font.BOLD, 16));
-        addressTextField.setBounds(300, 440, 400, 30);
-        addressTextField.addActionListener(this);
-        add(addressTextField);
+        panTextField = new JTextField();
+        panTextField.setFont(new Font("Railway", Font.BOLD, 16));
+        panTextField.setBounds(300, 440, 400, 30);
+        panTextField.addActionListener(this);
+        add(panTextField);
         
         
-        JLabel city = new JLabel("Adhar No: ");
-        city.setFont(new Font("Railway", Font.BOLD, 20));
-        city.setBounds(100, 490, 200, 30);
-        add(city);
+        JLabel adharno = new JLabel("Adhar No: ");
+        adharno.setFont(new Font("Railway", Font.BOLD, 20));
+        adharno.setBounds(100, 490, 200, 30);
+        add(adharno);
         
         
-        cityTextField = new JTextField();
-        cityTextField.setFont(new Font("Railway", Font.BOLD, 16));
-        cityTextField.setBounds(300, 490, 400, 30);
-        cityTextField.addActionListener(this);
-        add(cityTextField);
+        adharTextField = new JTextField();
+        adharTextField.setFont(new Font("Railway", Font.BOLD, 16));
+        adharTextField.setBounds(300, 490, 400, 30);
+        adharTextField.addActionListener(this);
+        add(adharTextField);
         
         
-        JLabel state = new JLabel("Senior Citygen: ");
-        state.setFont(new Font("Railway", Font.BOLD, 20));
-        state.setBounds(100, 540, 200, 30);
-        add(state);
+        JLabel SCityGen = new JLabel("Senior Citygen: ");
+        SCityGen.setFont(new Font("Railway", Font.BOLD, 20));
+        SCityGen.setBounds(100, 540, 200, 30);
+        add(SCityGen);
         
         
-        stateTextField = new JTextField();
-        stateTextField.setFont(new Font("Railway", Font.BOLD, 16));
-        stateTextField.setBounds(300, 540, 400, 30);
-        stateTextField.addActionListener(this);
-        add(stateTextField);
+        syes = new JRadioButton("YES");
+        syes.setBounds(300, 540, 60, 30);
+        syes.setBackground(Color.WHITE);
+        add(syes);
         
+        sno = new JRadioButton("No");
+        sno.setBounds(450, 540, 60, 30);
+        sno.setBackground(Color.WHITE);
+        add(sno);
         
-        JLabel pincode = new JLabel("Existing Account: ");
-        pincode.setFont(new Font("Railway", Font.BOLD, 20));
-        pincode.setBounds(100, 590, 200, 30);
-        add(pincode);
+        ButtonGroup sgroup = new ButtonGroup();
+        sgroup.add(syes);
+        sgroup.add(sno);
         
+        JLabel exname = new JLabel("Existing Account: ");
+        exname.setFont(new Font("Railway", Font.BOLD, 20));
+        exname.setBounds(100, 590, 200, 30);
+        add(exname);
         
-        pincodeTextField = new JTextField();
-        pincodeTextField.setFont(new Font("Railway", Font.BOLD, 16));
-        pincodeTextField.setBounds(300, 590, 400, 30);
-        pincodeTextField.addActionListener(this);
-        add(pincodeTextField);
+        exyes = new JRadioButton("YES");
+        exyes.setBounds(300, 590, 60, 30);
+        exyes.setBackground(Color.WHITE);
+        add(exyes);
+        
+        exno = new JRadioButton("No");
+        exno.setBounds(450, 590, 60, 30);
+        exno.setBackground(Color.WHITE);
+        add(exno);
+        
+        ButtonGroup exgroup = new ButtonGroup();
+        exgroup.add(exyes);
+        exgroup.add(exno);
         
         next = new JButton("Next");
         next.setBackground(Color.BLACK);
@@ -159,6 +169,7 @@ public class SignupTwo extends JFrame implements ActionListener {
         setSize(850,800);
         setLocation(350,10);
         setVisible(true);
+        getContentPane().setBackground(Color.WHITE);
     
     
     }
@@ -166,38 +177,38 @@ public class SignupTwo extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae){
         
-        String formno = "" + random;
-        String name = nameTextField.getText();
-        String fname = fnameTextField.getText();
-        String dob = ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText();
-        String gender = null;
-        if (male.isSelected()){
-        gender = "Male";
-        } else if (female.isSelected()){
-        gender = "Female";
+     
+        String sreligion = (String) religion.getSelectedItem();
+        String scategory = (String) category.getSelectedItem();
+        String sincome  = (String) income.getSelectedItem();
+        String seducation = (String) education.getSelectedItem();
+        String soccupation = (String) occupation.getSelectedItem();
+        
+        String seniorcitizen = null;
+        if (syes.isSelected()){
+        seniorcitizen = "Yes";
+        } else if (sno.isSelected()){
+        seniorcitizen = "No";
         }
-        String email = emailTextField.getText();
-        String marital = null;
-        if (married.isSelected()){
-            marital = "Married";
-        } else if (unmarried.isSelected()){
-            marital = "Unmarried";
-        } else if (other.isSelected()) {
-            marital = "Other";
+        String existingaccount = null;
+        if (exyes.isSelected()){
+            existingaccount = "Yes";
+        } else if (exno.isSelected()){
+            existingaccount = "No";
         }
-        String address = addressTextField.getText();
-        String city = cityTextField.getText();
-        String state = stateTextField.getText();
-        String pin = pincodeTextField.getText();
+        
+        String span = panTextField.getText();
+        String saadhar = adharTextField.getText();
+        
         
         try {
-            if (name.equals("")){
-                JOptionPane.showMessageDialog(null, "name is Required");
-            } else {
                 Conn c = new Conn();
-                String query = "insert into signup values('"+formno+"', '"+name+"', '"+fname+"', '"+dob+"', '"+gender+"', '"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+pin+"', '"+state+"')";
+                String query = "insert into signuptwo values('"+formno+"', '"+sreligion+"', '"+scategory+"', '"+sincome+"', '"+seducation+"', '"+soccupation+"', '"+span+"', '"+saadhar+"', '"+seniorcitizen+"', '"+existingaccount+"')";
                 c.s.executeUpdate(query);
-            }
+                
+                setVisible(false);
+                new SignupThree(formno).setVisible(true);
+                
         } catch (Exception e){
             System.err.println(e);
         }
@@ -206,6 +217,6 @@ public class SignupTwo extends JFrame implements ActionListener {
     
     
     public static void main(String args[]){
-        new SignupTwo();
+        new SignupTwo("");
     }
 }
