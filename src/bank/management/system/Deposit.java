@@ -2,10 +2,7 @@ package bank.management.system;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.SQLException;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 
@@ -50,7 +47,7 @@ public class Deposit extends JFrame implements ActionListener{
         
         setSize(900,900);
         setLocation(300,0);
-        //setUndecorated(true);
+   
         setVisible(Boolean.TRUE);
     }
     
