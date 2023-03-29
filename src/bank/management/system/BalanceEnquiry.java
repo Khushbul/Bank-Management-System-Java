@@ -39,7 +39,7 @@ public class BalanceEnquiry extends JFrame implements ActionListener{
                     } else {
                         balance -= Integer.parseInt(rs.getString("amount"));
                     }
-                    System.out.println(balance);
+                    
                 }
          } catch (Exception e){
              System.out.println(e);
